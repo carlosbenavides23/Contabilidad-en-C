@@ -1,0 +1,7 @@
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/lib/minizip.lib
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/bin/minizip.dll
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/share/unofficial-minizip/unofficial-minizipConfig.cmake
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/share/unofficial-minizip/unofficial-minizipConfigVersion.cmake
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/share/unofficial-minizip/unofficial-minizipTargets.cmake
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/share/unofficial-minizip/unofficial-minizipTargets-debug.cmake
+C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/lib/pkgconfig/minizip.pc

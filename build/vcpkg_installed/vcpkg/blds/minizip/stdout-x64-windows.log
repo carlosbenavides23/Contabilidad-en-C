@@ -1,0 +1,17 @@
+-- Using cached madler-zlib-v1.3.1.tar.gz
+-- Extracting source C:/Users/Carlos/AppData/Local/vcpkg/downloads/madler-zlib-v1.3.1.tar.gz
+-- Applying patch 0001-remove-ifndef-NOUNCRYPT.patch
+-- Applying patch 0002-add-declaration-for-mkdir.patch
+-- Applying patch pkgconfig.patch
+-- Applying patch android-fileapi.patch
+-- Using source at C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/blds/minizip/src/v1.3.1-2a3c4cf735.clean
+-- Configuring x64-windows
+-- Building x64-windows-dbg
+-- Building x64-windows-rel
+-- Fixing pkgconfig file: C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/lib/pkgconfig/minizip.pc
+-- Using cached msys2-mingw-w64-x86_64-pkgconf-1~2.5.1-1-any.pkg.tar.zst
+-- Using cached msys2-msys2-runtime-3.6.5-1-x86_64.pkg.tar.zst
+-- Using msys root at C:/Users/Carlos/AppData/Local/vcpkg/downloads/tools/msys2/3e71d1f8e22ab23f
+-- Fixing pkgconfig file: C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/debug/lib/pkgconfig/minizip.pc
+-- Installing: C:/Users/Carlos/source/repos/Contabilidad en C/build/vcpkg_installed/vcpkg/pkgs/minizip_x64-windows/share/minizip/copyright
+-- Performing post-build validation

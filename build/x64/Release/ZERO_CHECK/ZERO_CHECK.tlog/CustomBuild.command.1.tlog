@@ -1,0 +1,10 @@
+^C:\USERS\CARLOS\SOURCE\REPOS\CONTABILIDAD EN C\BUILD\CMAKEFILES\757CED0597C94D3D4880458F8F527417\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\Microsoft Visual Studio\18\Community\Common7\IDE\CommonExtensions\Microsoft\CMake\CMake\bin\cmake.exe" "-SC:/Users/Carlos/source/repos/Contabilidad en C" "-BC:/Users/Carlos/source/repos/Contabilidad en C/build" --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file "C:/Users/Carlos/source/repos/Contabilidad en C/build/financial_reconciliation.slnx"
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
