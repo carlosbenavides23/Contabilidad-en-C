@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.21)
 
-project(financial_reconciliation VERSION 1.0.0 LANGUAGES C)
+project(financial_reconciliation VERSION 1.0.0 LANGUAGES C Fortran)
 
 set(CMAKE_C_STANDARD 17)
 set(CMAKE_C_STANDARD_REQUIRED ON)
@@ -59,6 +59,22 @@ add_executable(financial_reconciliation
 target_include_directories(financial_reconciliation PRIVATE src)
 target_link_libraries(financial_reconciliation PRIVATE xlsxwriter_external)
 
+add_library(financial_core STATIC src/fortran/financial_core.f90)
+target_include_directories(financial_core PUBLIC src/native)
+
+add_executable(financial_reconciliation_native
+    src/native/main.c
+    src/data.c
+)
+target_include_directories(financial_reconciliation_native PRIVATE src)
+target_link_libraries(financial_reconciliation_native PRIVATE financial_core)
+
+if(NOT MSVC)
+    target_compile_options(financial_reconciliation_native PRIVATE
+        -Wall -Wextra -Wpedantic -Wconversion
+    )
+endif()
+
 if(MSVC)
     target_compile_options(financial_reconciliation PRIVATE /W4 /utf-8 /permissive-)
 else()
@@ -79,4 +95,20 @@ if(BUILD_TESTING)
         )
     endif()
     add_test(NAME formula_tests COMMAND formula_tests)
+
+    add_executable(financial_core_tests tests/financial_core_tests.c)
+    target_link_libraries(financial_core_tests PRIVATE financial_core)
+    if(NOT MSVC)
+        target_compile_options(financial_core_tests PRIVATE
+            -Wall -Wextra -Wpedantic -Wconversion
+        )
+    endif()
+    add_test(NAME financial_core_tests COMMAND financial_core_tests)
+
+    add_test(NAME financial_reconciliation_native
+        COMMAND financial_reconciliation_native
+    )
+    set_tests_properties(financial_reconciliation_native PROPERTIES
+        WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}"
+    )
 endif()
