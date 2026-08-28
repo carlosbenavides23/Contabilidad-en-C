@@ -1,0 +1,17 @@
+build/
+out/
+
+.vs/
+CMakeCache.txt
+CMakeFiles/
+*.vcxproj
+*.vcxproj.filters
+
+~$*.xlsx
+~$*.xls
+
+*.exe
+*.dll
+*.pdb
+
+output_csv.xlsx

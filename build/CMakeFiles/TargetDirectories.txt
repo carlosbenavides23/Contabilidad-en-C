@@ -1,9 +1,0 @@
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/financial_reconciliation.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/Experimental.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/Nightly.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/Continuous.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/NightlyMemoryCheck.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/formula_tests.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/RUN_TESTS.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/Carlos/source/repos/Contabilidad en C/build/CMakeFiles/ZERO_CHECK.dir
