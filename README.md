@@ -310,6 +310,23 @@ columnas auxiliares y los vecinos pueden estar arbitrariamente lejos. En el
 dataset, TX009 y TX010 quedan entre 2023-04-08 y 2023-04-20; los valores
 esperados son 2023-04-12 y 2023-04-16.
 
+Se conserva `INDEX` para recuperar los seriales anterior y posterior. `OFFSET`
+solo puede desplazar una referencia de hoja; no puede tomar como referencia el
+vector calculado por `build_date_serial_expression()`. La sustitución clásica
+correcta tendría que desplazar `Transacciones!$A$2` hasta la celda RAW hallada
+por `MATCH` y repetir allí todo el análisis `DATE/MID/FIND/VALUE`. Al expandir
+esa variante en los tres usos de la fecha anterior y el uso de la siguiente,
+la fórmula resultante mide 20.876 caracteres, frente a 7.197 con `INDEX`, y
+supera el límite de 8.192 de Excel. Acortarla mediante `DATEVALUE` o coerción
+directa del texto ISO introduciría dependencia regional y dejaría de ser una
+alternativa defendible para Excel heredado y Calc. Por tanto, forzar `OFFSET`
+empeoraría tanto la validez como la compatibilidad de R6.
+
+La comprobación del caso de demostración usa posiciones relativas 8, 9, 10 y
+11: entre 2023-04-08 y 2023-04-20 hay 12 días repartidos en tres intervalos.
+La interpolación conserva exactamente cuatro días por intervalo, por lo que
+las posiciones inválidas 9 y 10 producen 2023-04-12 y 2023-04-16.
+
 ## Recálculo
 
 libxlsxwriter no evalúa fórmulas. Por defecto genera en `xl/workbook.xml`:
@@ -353,11 +370,23 @@ Comprobación en Excel o LibreOffice Calc:
 - **Requerimiento 3:** la rama bajo límite devuelve texto por exigencia de
   `TEXT`; la rama sobre límite devuelve número. La matriz es deliberadamente de
   tipo mixto.
-- **Requerimiento 6:** una única CSE que abarque `A2:A500` no puede ejecutar 499
-  búsquedas `MATCH` independientes con un contexto de fila escalar en Excel
-  clásico, porque no existen `MAP`, `BYROW` ni `LAMBDA`. La implementación usa
-  una CSE clásica completa por posición. La búsqueda anterior y posterior sí
-  es arbitrariamente distante y no usa auxiliares.
+- **Requerimiento 6:** una CSE multicelda clásica puede devolver un vector, pero
+  se evalúa como una sola expresión matricial; no equivale a copiar la fórmula
+  y no crea 499 contextos escalares independientes para el patrón actual
+  `MATCH(...ROW(R)<ROW()...)`. Si `ROW()` se sustituye por el vector 1..499, la
+  comparación de dos vectores verticales es elemento a elemento, no las 499
+  búsquedas completas requeridas. La vectorización clásica directa necesita
+  construir una máscara triangular 499x499, reducirla por fila y entregar los
+  ordinales resultantes a `MATCH`; al expandir `TRANSPOSE/MMULT`, la validación
+  de fecha y la interpolación sin nombres ni auxiliares, la cadena mide 14.065
+  caracteres. `OFFSET` tampoco aporta la iteración por fila: devuelve una
+  referencia desplazada y su sustitución directa mide 20.876 caracteres. Ambas
+  exceden el límite de 8.192 y la segunda además obliga a volver a analizar el
+  texto RAW. Sin auxiliares ni `MAP`, `BYROW` o `LAMBDA`, no hay una única CSE
+  defendible que satisfaga simultáneamente la semántica, el límite y la
+  compatibilidad exigidos. Se mantienen 499 CSE clásicas autocontenidas, una
+  por posición. La búsqueda anterior y posterior sí es arbitrariamente
+  distante y no usa auxiliares; por ello R6 continúa marcado como parcial.
 - La compatibilidad con Calc es a través de su importador XLSX y del subconjunto
   clásico utilizado; no se afirma que el archivo sea ODF/OpenFormula.
 - Las pruebas automatizadas validan estructura y sintaxis almacenada. La
