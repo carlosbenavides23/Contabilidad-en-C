@@ -75,6 +75,19 @@ ctest --test-dir build --output-on-failure
 El proyecto activa `/W4 /utf-8 /permissive-` con MSVC y
 `-Wall -Wextra -Wpedantic -Wconversion` con GCC/Clang.
 
+## Backend nativo R1 (C + Fortran)
+
+`financial_reconciliation_native` carga los tres CSV de `data/`. C separa las
+transacciones crudas y resuelve tasa y retencion mediante el catalogo; Fortran
+recibe los arrays numericos y calcula el vector de montos netos. El ejecutable
+solo muestra resultados numericos en la terminal y no genera archivos XLSX.
+
+Las lineas completamente vacias se omiten. Una transaccion con estructura
+invalida, monto no numerico o codigo fiscal desconocido detiene el proceso con
+un error, sin sustituir valores. Las fechas no se interpretan en R1, por lo que
+los marcadores de fecha presentes siguen procesandose; su tratamiento queda
+reservado para R6.
+
 ## Ejecución
 
 Dataset integrado y nombre predeterminado:
